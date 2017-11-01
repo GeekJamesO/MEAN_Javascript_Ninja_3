@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    Please see the console to see the output for this javascript program.
+    <script>
+        class Ninja {
+            constructor(name, health = 100, speed = 3, strength = 3) {
+                this.name = name;
+                this.health = health;
+                this.speed = speed;
+                this.strength = strength;
+            }
+
+            getSpeed() {
+                return this.speed;
+            }
+
+            getStrength() {
+                return this.strength;
+            }
+
+            sayName() {
+                console.log("\"My ninja name is " + this.name + "\"");
+                return this;
+            }
+            showStats() {
+                console.log("\"Name: " + this.name + ", Health: " + this.health + ", Speed: " + this.getSpeed() +
+                    ", Strength: " +
+                    this.getStrength() + "\"");
+                return this;
+            }
+            drinkSake(quote = "") {
+                this.health += 10;
+                if (quote == "") {
+                    console.log("  " + this.name + ' just drank some Sake.');
+                } else {
+                    console.log(" " + this.name + ' just drank some Sake and mumbles "' + quote + '".');
+                }
+                return this;
+            }
+            punch(otherPlayer) {
+                var damage = 5;
+                var attack = "punched";
+                console.log(" " + otherPlayer.name + " was " + attack + " by " + this.name + " and lost " + damage +
+                    " points");
+                otherPlayer.health -= damage;
+                return this;
+            }
+            kick(otherPlayer) {
+                var damage = 15 * this.strength;
+                var attack = "kicked";
+                console.log(" " + otherPlayer.name + " was " + attack + " by " + this.name + " and lost " + damage +
+                    " points");
+                otherPlayer.health -= damage;
+                return this;
+            }
+        }
+        class Sensei extends Ninja {
+            constructor(name, health = 200, speed = 10, strength = 10, wisdom = 10) {
+                super(name, health, speed, strength);
+                this.wisdom = wisdom;
+                this.phrases = [
+                    "What one programmer can do in one month, two programmers can do in two months.",
+                    "When you have learned to snatch the error code from the trap frame, it will be time for you to leave.",
+                    "Even a perfect program still has bugs.",
+                    "After three days without programming, life becomes meaningless.",
+                    "When the program is being tested, it is too late to make design changes.",
+                    "A well-written program is its own heaven; a poorly-written program is its own hell.",
+                    "Though a program be but three lines long, someday it will have to be maintained.",
+                    "Let the programmers be many and the managers few - then all will be productive.",
+                    "You can demonstrate a program for a corporate executive, but you can't make him computer literate.",
+                    "Without the wind, the grass does not move. Without software, hardware is useless.",
+                    "Family, health, sleep, food, and programming.  The rest is not important",
+                    "while ( ! ( succeed = try() ) );",
+                    "Talk is cheap. Show me the code.",
+                    "when you don't create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create",
+                    "Programs must be written for people to read, and only incidentally for machines to execute.",
+                    "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live",
+                    "That's the thing about people who think they hate computers. What they really hate is lousy programmers.",
+                    "Give a man a program, frustrate him for a day. Teach a man to program, frustrate him for a lifetime.",
+                    "I'm not a great programmer; I'm just a good programmer with great habits",
+                    "How you look at it is pretty much how you'll see it",
+                    "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?",
+                    "A language that doesn't affect the way you think about programming is not worth knowing.",
+                    "Truth can only be found in one place: the code.",
+                    "Walking on water and developing software from a specification are easy if both are frozen.",
+                    "Perl – The only language that looks the same before and after RSA encryption.",
+                    "The most disastrous thing that you can ever learn is your first programming language.",
+                    "The most important property of a program is whether it accomplishes the intention of its user.",
+                    "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+                    "Some of the best programming is done on paper, really. Putting it into the computer is just a minor detail.",
+                    "Progress is possible only if we train ourselves to think about programs without thinking of them as pieces of executable code.",
+                    "Programmers are not to be measured by their ingenuity and their logic but by the completeness of their case analysis.",
+                    "Don't gloss over a routine or piece of code involved in the bug because you \"know\" it works. Prove it. Prove it in this context, with this data, with these boundary conditions.",
+                    "Simple things should be simple, complex things should be possible.",
+                    "Abstraction is the elimination of the irrelevant and the amplification of the essential.",
+                    "This approach is refreshing because most of the programming books I've read are drier than a camel's fart.",
+                    "Computers are useless. They can only give you answers.",
+                    "Computers are like bikinis. They save people a lot of guesswork.",
+                    "They have computers, and they may have other weapons of mass destruction.",
+                    "That’s what’s cool about working with computers.  They don’t argue, they remember everything, and they don’t drink all your beer",
+                    "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
+                    "The question of whether computers can think is like the question of whether submarines can swim.",
+                    "Never trust a computer you can’t throw out a window.",
+                    "Hardware: The parts of a computer system that can be kicked.",
+                    "There are two major products that come out of Berkeley: LSD and UNIX. We don’t believe this to be a coincidence.",
+                    "The Web is like a dominatrix. Everywhere I turn, I see little buttons ordering me to Submit.",
+                    "We are Microsoft. Resistance Is Futile. You Will Be Assimilated.",
+                    "Controlling complexity is the essence of computer programming.",
+                    "There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies.  And the other way is to make it so complicated that there are no obvious deficiencies.",
+                    "There’s an old story about the person who wished his computer were as easy to use as his telephone. That wish has come true, since I no longer know how to use my telephone.",
+                    "Any fool can use a computer. Many do.",
+                    "There are only two industries that refer to their customers as ‘users’.",
+                    "Programmers are in a race with the Universe to create bigger and better idiot-proof programs, while the Universe is trying to create bigger and better idiots. So far the Universe is winning.",
+                    "The trouble with programmers is that you can never tell what a programmer is doing until it’s too late.",
+                    "For a long time it puzzled me how something so expensive, so leading edge, could be so useless. And then it occurred to me that a computer is a stupid machine with the ability to do incredibly smart things, while computer programmers are smart people with the ability to do incredibly stupid things. They are, in short, a perfect match.",
+                    "First, solve the problem. Then, write the code.",
+                    "Optimism is an occupational hazard of programming; feedback is the treatment.",
+                    "To iterate is human, to recurse divine.",
+                    "The best thing about a boolean is even if you are wrong, you are only off by a bit.",
+                    "Fifty years of programming language research, and we end up with C++?",
+                    "Good code is its own best documentation.",
+                    "Any code of your own that you haven’t looked at for six or more months might as well have been written by someone else.",
+                    "The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.",
+                    "Good programmers use their brains, but good guidelines save us having to think out every case.",
+                    "If debugging is the process of removing bugs, then programming must be the process of putting them in.",
+                    "There are two ways to write error-free programs; only the third one works.",
+                    "To err is human, but to really foul things up you need a computer.",
+                    "A computer lets you make more mistakes faster than any invention in human history–with the possible exceptions of handguns and tequila.",
+                    "The computing scientist’s main challenge is not to get confused by the complexities of his own making.",
+                    "When in doubt, use brute force.",
+                    "Controlling complexity is the essence of computer programming.",
+                    "he central enemy of reliability is complexity.",
+                    "Simplicity is the ultimate sophistication.",
+                    "My definition of an expert in any field is a person who knows enough about what’s really going on to be scared.",
+                    "To READ is to learn, but to DO is to know.",
+                    "The competent programmer is fully aware of the limited size of his own skull. He therefore approaches his task with full humility, and avoids clever tricks like the plague.",
+                    "Before software can be reusable it first has to be usable.",
+                    "Program testing can be a very effective way to show the presence of bugs, but is hopelessly inadequate for showing their absence.",
+                    "The law of bureaucracy, this law states that… 'Work expands so as to fill the time available for its completion.'",
+                    "Code never lies, comments sometimes do.",
+                    "When I am working on a problem I never think about beauty. I think only how to solve the problem. But when I have finished, if the solution is not beautiful, I know it is wrong.",
+                    "I have always found that plans are useless, but planning is indispensable.",
+                    "With diligence it is possible to make anything run slowly.",
+                    "Simplicity carried to the extreme becomes elegance.",
+                    "Trying to outsmart a compiler defeats much of the purpose of using one.",
+                    "The proper use of comments is to compensate for our failure to express ourself in code.",
+                    "The purpose of software engineering is to control complexity, not to create it.",
+                    "The purpose of software engineering is to control complexity, not to create it.",
+                    "There’s nothing in computing that can’t be broken by another level of indirection.",
+                    "Normal people believe that if it ain’t broke, don’t fix it. Engineers believe that if it ain’t broke, it doesn’t have enough features yet.",
+                    "If you give someone a program, you will frustrate them for a day; if you teach them how to program, you will frustrate them for a lifetime.",
+                    "Most good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.",
+                    "Programming isn't about what you know; it's about what you can figure out.",
+                    "They don't make bugs like Bunny anymore.",
+                    "Considering the current sad state of our computer programs, software development is clearly still a black art, and cannot yet be called an engineering discipline.",
+                    "Good design adds value faster than it adds cost.",
+                    "In theory, theory and practice are the same. In practice, they’re not.",
+                    "The best programmers are not marginally better than merely good ones. They are an order-of-magnitude better, measured by whatever standard: conceptual creativity, speed, ingenuity of design, or problem-solving ability.",
+                    "Some things Man was never meant to know. For everything else, there's Google.",
+                    "Artificial Intelligence usually beats natural stupidity.",
+                    "To err is human... to really foul up requires the root password.",
+                    "Like car accidents, most hardware problems are due to driver error.",
+                    "Programmers are tools for converting caffeine into code.",
+                    "See daddy ? All the keys are in alphabetical order now.",
+                    "Hey! It compiles! Ship it!",
+                    "SUPERCOMPUTER: what it sounded like before you bought it.",
+                    "Yo moma is like HTML: Tiny head, huge body.",
+                    "My software never has bugs. It just develops random features.",
+                    "The only problem with troubleshooting is that sometimes trouble shoots back.",
+                    "Relax, its only ONES and ZEROS !",
+                    "If brute force doesn't solve your problems, then you aren't using enough.",
+                    "Unix is user-friendly. It's just very selective about who its friends are.",
+                    "There are 10 types of people in the world: those who understand binary, and those who don't.",
+                    "Computer dating is fine, if you're a computer.",
+                    "Those who can't write programs, write help files.",
+                    "A programmer is a person who fixes a problem that you don't know you have, in a way you don't understand."
+                ]
+            }
+            speakWisdom() {
+                var id = Math.floor(Math.random() * this.phrases.length);
+                super.drinkSake(this.phrases[id]);
+            }
+        }
+
+        // var ninja1 = new Ninja("Hyabusa");
+        // ninja1.sayName();
+        // console.log("   --- Ninja I --- ");
+        // ninja1.showStats();
+        // ninja1.drinkSake();
+        // ninja1.showStats();
+
+        // console.log("   --- Ninja II --- ");
+        // var blue_ninja = new Ninja("Goemon");
+        // var red_ninja = new Ninja("Bill Gates");
+        // blue_ninja.showStats();
+        // red_ninja.showStats();
+
+        // red_ninja.punch(blue_ninja);
+        // blue_ninja.showStats();
+
+        // blue_ninja.kick(red_ninja);
+        // red_ninja.showStats();
+
+        console.log(" --- Ninja III --- ");
+        var master = new Sensei("Master James");
+        master.showStats();
+        master.speakWisdom();
+        master.speakWisdom();
+        master.speakWisdom();
+        master.showStats();
+    </script>
+</body>
+
+</html>
